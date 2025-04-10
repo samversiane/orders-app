@@ -1,0 +1,36 @@
+# ===========================
+# Node / Angular
+# ===========================
+store-ui/node_modules/
+store-ui/dist/
+store-ui/tmp/
+store-ui/out-tsc/
+store-ui/.angular/cache/
+store-ui/.sass-cache/
+store-ui/.editorconfig
+store-ui/.env
+store-ui/.env.*
+
+# ===========================
+# Java / Spring Boot
+# ===========================
+store-api/target/
+store-api/.classpath
+store-api/.project
+store-api/.settings/
+store-api/.env
+store-api/.env.*
+
+# ===========================
+# IDEs
+# ===========================
+**/.idea/
+**/.vscode/
+**/*.iml
+
+# ===========================
+# SOs e misc
+# ===========================
+.DS_Store
+Thumbs.db
+*.log
