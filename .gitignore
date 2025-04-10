@@ -1,25 +1,25 @@
 # ===========================
 # Node / Angular
 # ===========================
-store-ui/node_modules/
-store-ui/dist/
-store-ui/tmp/
-store-ui/out-tsc/
-store-ui/.angular/cache/
-store-ui/.sass-cache/
-store-ui/.editorconfig
-store-ui/.env
-store-ui/.env.*
+orders-app-ui/node_modules/
+orders-app-ui/dist/
+orders-app-ui/tmp/
+orders-app-ui/out-tsc/
+orders-app-ui/.angular/cache/
+orders-app-ui/.sass-cache/
+orders-app-ui/.editorconfig
+orders-app-ui/.env
+orders-app-ui/.env.*
 
 # ===========================
 # Java / Spring Boot
 # ===========================
-store-api/target/
-store-api/.classpath
-store-api/.project
-store-api/.settings/
-store-api/.env
-store-api/.env.*
+orders-app-api/target/
+orders-app-api/.classpath
+orders-app-api/.project
+orders-app-api/.settings/
+orders-app-api/.env
+orders-app-api/.env.*
 
 # ===========================
 # IDEs
@@ -31,6 +31,6 @@ store-api/.env.*
 # ===========================
 # SOs e misc
 # ===========================
-.DS_Store
+.DS_order
 Thumbs.db
 *.log
