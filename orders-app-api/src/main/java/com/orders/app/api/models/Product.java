@@ -1,4 +1,4 @@
-package com.store.storeapi.models;
+package com.orders.app.api.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,11 +18,9 @@ public class Product {
     }
 
     public Product(
-            Long id,
             String name,
             Double price
     ) {
-        this.id = id;
         this.name = name;
         this.price = price;
     }

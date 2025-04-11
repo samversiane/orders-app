@@ -1,4 +1,4 @@
-package com.store.storeapi.dtos;
+package com.orders.app.api.dtos;
 
 public record OrderItemDTO(
         Long id,

@@ -1,13 +1,14 @@
-package com.store.storeapi.models;
+package com.orders.app.api.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 import java.util.Objects;
 
-@Entity(name = "ITEM_ORDER")
+@Entity(name = "ITEM_ORDER_TB")
 public class OrderItem {
     @Id
     @GeneratedValue
@@ -16,17 +17,29 @@ public class OrderItem {
     @ManyToOne
     private Product product;
 
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private Order order;
+
     private Integer quantity;
 
     public OrderItem() {
     }
 
     public OrderItem(
-            Long id,
+            Product product,
+            Order order,
+            Integer quantity
+    ) {
+        this.product = product;
+        this.order = order;
+        this.quantity = quantity;
+    }
+
+    public OrderItem(
             Product product,
             Integer quantity
     ) {
-        this.id = id;
         this.product = product;
         this.quantity = quantity;
     }
@@ -51,14 +64,20 @@ public class OrderItem {
         this.quantity = quantity;
     }
 
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj == this) return true;
         if (obj == null || obj.getClass() != this.getClass()) return false;
         var that = (OrderItem) obj;
-        return Objects.equals(this.id, that.id) &&
-                Objects.equals(this.product, that.product) &&
-                Objects.equals(this.quantity, that.quantity);
+        return Objects.equals(this.id, that.id);
     }
 
     @Override

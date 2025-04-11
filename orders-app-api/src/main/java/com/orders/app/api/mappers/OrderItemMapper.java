@@ -1,7 +1,7 @@
-package com.store.storeapi.mappers;
+package com.orders.app.api.mappers;
 
-import com.store.storeapi.dtos.OrderItemDTO;
-import com.store.storeapi.models.OrderItem;
+import com.orders.app.api.dtos.OrderItemDTO;
+import com.orders.app.api.models.OrderItem;
 
 public class OrderItemMapper {
 
@@ -15,8 +15,7 @@ public class OrderItemMapper {
 
     static OrderItem dtoToEntity(OrderItemDTO dto) {
         return new OrderItem(
-                dto.id(),
-                ProductMapper.DtoToEntity(dto.productDTO()),
+                ProductMapper.dtoToEntity(dto.productDTO()),
                 dto.quantity()
         );
     }

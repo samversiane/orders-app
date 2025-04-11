@@ -1,11 +1,11 @@
-package com.store.storeapi.mappers;
+package com.orders.app.api.mappers;
 
-import com.store.storeapi.dtos.OrderDTO;
-import com.store.storeapi.models.Order;
+import com.orders.app.api.dtos.OrderDTO;
+import com.orders.app.api.models.Order;
 
 public class OrderMapper {
 
-    static OrderDTO entityToDto(Order entity) {
+    public static OrderDTO entityToDto(Order entity) {
         return new OrderDTO(
                 entity.getId(),
                 CustomerMapper.entityToDto(entity.getCustomer()),
@@ -14,9 +14,8 @@ public class OrderMapper {
         );
     }
 
-    static Order DtoToEntity(OrderDTO dto) {
+    static Order dtoToEntity(OrderDTO dto) {
         return new Order(
-                dto.id(),
                 CustomerMapper.dtoToEntity(dto.customerDTO()),
                 SupplierMapper.dtoToEntity(dto.supplierDTO()),
                 dto.items().stream().map(OrderItemMapper::dtoToEntity).toList()

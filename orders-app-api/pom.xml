@@ -8,11 +8,11 @@
         <version>3.4.4</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.store</groupId>
+    <groupId>com.orders.app.api</groupId>
     <artifactId>orders-app-api</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>store-api</name>
-    <description>store-api</description>
+    <name>orders-app-api</name>
+    <description>orders-app-api</description>
     <url/>
     <licenses>
         <license/>

@@ -1,4 +1,4 @@
-package com.store.storeapi.dtos;
+package com.orders.app.api.dtos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

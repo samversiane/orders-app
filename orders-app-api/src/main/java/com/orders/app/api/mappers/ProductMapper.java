@@ -1,7 +1,7 @@
-package com.store.storeapi.mappers;
+package com.orders.app.api.mappers;
 
-import com.store.storeapi.dtos.ProductDTO;
-import com.store.storeapi.models.Product;
+import com.orders.app.api.dtos.ProductDTO;
+import com.orders.app.api.models.Product;
 
 public class ProductMapper {
 
@@ -13,9 +13,8 @@ public class ProductMapper {
         );
     }
 
-    static Product DtoToEntity(ProductDTO dto) {
+    static Product dtoToEntity(ProductDTO dto) {
         return new Product(
-                dto.id(),
                 dto.name(),
                 dto.price()
         );

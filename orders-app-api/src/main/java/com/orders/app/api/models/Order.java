@@ -1,4 +1,4 @@
-package com.store.storeapi.models;
+package com.orders.app.api.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -21,19 +21,17 @@ public class Order {
     @ManyToOne
     private Supplier supplier;
 
-    @OneToMany
+    @OneToMany(mappedBy = "order")
     private List<OrderItem> items;
 
     public Order() {
     }
 
     public Order(
-            Long id,
             Customer customer,
             Supplier supplier,
             List<OrderItem> items
     ) {
-        this.id = id;
         this.customer = customer;
         this.supplier = supplier;
         this.items = items;
@@ -72,20 +70,17 @@ public class Order {
         if (obj == this) return true;
         if (obj == null || obj.getClass() != this.getClass()) return false;
         var that = (Order) obj;
-        return Objects.equals(this.id, that.id) &&
-                Objects.equals(this.customer, that.customer) &&
-                Objects.equals(this.supplier, that.supplier) &&
-                Objects.equals(this.items, that.items);
+        return Objects.equals(this.id, that.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, customer, supplier, items);
+        return Objects.hash(id, customer, supplier);
     }
 
     @Override
     public String toString() {
-        return "Order[id=%s, customer=%s, supplier=%s, items=%s]".formatted(id, customer, supplier, items);
+        return "Order[id=%s, customer=%s, supplier=%s]".formatted(id, customer, supplier);
     }
 
 }

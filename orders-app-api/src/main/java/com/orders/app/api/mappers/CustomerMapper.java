@@ -1,7 +1,7 @@
-package com.store.storeapi.mappers;
+package com.orders.app.api.mappers;
 
-import com.store.storeapi.dtos.CustomerDTO;
-import com.store.storeapi.models.Customer;
+import com.orders.app.api.dtos.CustomerDTO;
+import com.orders.app.api.models.Customer;
 
 public class CustomerMapper {
 
@@ -14,7 +14,6 @@ public class CustomerMapper {
 
     static Customer dtoToEntity(CustomerDTO dto) {
         return new Customer(
-                dto.id(),
                 dto.name()
         );
     }
