@@ -1,7 +1,7 @@
 package com.orders.app.api.services;
 
-import com.orders.app.api.dtos.OrderDTO;
-import com.orders.app.api.mappers.OrderMapper;
+import com.orders.app.api.dtos.OrderSummarizedDTO;
+import com.orders.app.api.exceptions.OrderProcessingException;
 import com.orders.app.api.repositories.OrderRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,7 +16,11 @@ public class OrderService {
         this.orderRepository = orderRepository;
     }
 
-    public Page<OrderDTO> findAllOrdersPaginated(Pageable pageable) {
-        return orderRepository.findAll(pageable).map(OrderMapper::entityToDto);
+    public Page<OrderSummarizedDTO> findAllOrdersPaginated(Pageable pageable) {
+        try {
+            return orderRepository.findAllOrdersSummarizedPaginated(pageable);
+        } catch (Exception e) {
+            throw new OrderProcessingException("Error fetching orders: %s".formatted(e.getMessage()));
+        }
     }
 }

@@ -20,7 +20,7 @@ public record OrderDTO(
     @JsonProperty
     public double totalValue() {
         return items.stream()
-                .mapToDouble(i -> i.quantity() * i.productDTO().price())
+                .mapToDouble(i -> i.quantity() * i.product().price())
                 .sum();
     }
 }

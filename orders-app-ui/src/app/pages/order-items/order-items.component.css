@@ -1,0 +1,32 @@
+.items-container {
+  padding: 16px;
+  background-color: #fafafa;
+  width: 100%;
+}
+
+h3 {
+  margin-top: 0;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+table {
+  width: 100%;
+}
+
+.items-container .mat-mdc-header-row {
+  height: 39px;
+}
+
+.items-container .mat-mdc-row {
+  height: 39px;
+}
+
+.items-container .mat-mdc-row .mat-mdc-cell {
+  border-bottom: 0;
+  border-top: 0;
+}
+
+.items-container .mat-mdc-header-row .mat-mdc-header-cell {
+  border-bottom: 0;
+  border-top: 0;
+}

@@ -5,7 +5,7 @@ import com.orders.app.api.models.OrderItem;
 
 public class OrderItemMapper {
 
-    static OrderItemDTO entityToDto(OrderItem entity) {
+    public static OrderItemDTO entityToDto(OrderItem entity) {
         return new OrderItemDTO(
                 entity.getId(),
                 ProductMapper.entityToDto(entity.getProduct()),
@@ -13,9 +13,9 @@ public class OrderItemMapper {
         );
     }
 
-    static OrderItem dtoToEntity(OrderItemDTO dto) {
+    public static OrderItem dtoToEntity(OrderItemDTO dto) {
         return new OrderItem(
-                ProductMapper.dtoToEntity(dto.productDTO()),
+                ProductMapper.dtoToEntity(dto.product()),
                 dto.quantity()
         );
     }

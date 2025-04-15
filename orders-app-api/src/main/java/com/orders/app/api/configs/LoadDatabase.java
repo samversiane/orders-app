@@ -33,28 +33,56 @@ public class LoadDatabase {
             OrderRepository orderRepository
     ) {
         return args -> {
-            Customer customer = customerRepository.save(new Customer("John Doe"));
-            log.info("Preloading {}", customer);
+            // Criando clientes
+            List<Customer> customers = List.of(
+                    customerRepository.save(new Customer("John Doe")),
+                    customerRepository.save(new Customer("Jane Smith")),
+                    customerRepository.save(new Customer("Alice Johnson"))
+            );
+            log.info("Preloaded Customers {}", customers);
 
-            Supplier supplier = supplierRepository.save(new Supplier("Acme Supplies"));
-            log.info("Preloading {}", supplier);
+            // Criando fornecedores
+            List<Supplier> suppliers = List.of(
+                    supplierRepository.save(new Supplier("Acme Supplies")),
+                    supplierRepository.save(new Supplier("Best Goods Ltd.")),
+                    supplierRepository.save(new Supplier("Global Suppliers Inc."))
+            );
+            log.info("Preloaded Suppliers {}", suppliers);
 
-            Product rod = productRepository.save(new Product("Fishing Rod", 100.0));
-            Product bait = productRepository.save(new Product("Bait Pack", 20.0));
-            log.info("Preloading {}", rod);
-            log.info("Preloading {}", bait);
+            // Criando 20 produtos
+            List<Product> products = new ArrayList<>();
+            for (int i = 1; i <= 20; i++) {
+                Product product = productRepository.save(new Product("Product " + i, 10.0 * i));
+                products.add(product);
+                log.info("Preloading Product {}", product);
+            }
 
-            Order order = orderRepository.save(new Order(customer, supplier, new ArrayList<>()));
-            log.info("Preloading Order without items: {}", order);
+            // Criando 30 pedidos
+            for (int i = 1; i <= 30; i++) {
+                // Alternando clientes e fornecedores
+                Customer customer = customers.get(i % customers.size());
+                Supplier supplier = suppliers.get(i % suppliers.size());
 
-            OrderItem item1 = orderItemRepository.save(new OrderItem(rod, order, 1));
-            OrderItem item2 = orderItemRepository.save(new OrderItem(bait, order, 3));
+                // Criando pedido
+                Order order = orderRepository.save(new Order(customer, supplier, new ArrayList<>()));
+                log.info("Preloading Order {} without items: {}", i, order);
 
-            List<OrderItem> orderItems = List.of(item1, item2);
-            order.setItems(orderItems);
-            orderRepository.save(order);
+                // Criando entre 5 a 20 itens aleatórios para o pedido
+                List<OrderItem> orderItems = new ArrayList<>();
+                int itemsCount = 5 + (i % 16); // Quantidade de itens (5 a 20, pois 5 + resto de 16 = até 20)
+                for (int j = 0; j < itemsCount; j++) {
+                    Product product = products.get((i + j) % products.size()); // Seleciona produtos rotativamente
+                    int quantity = 1 + (j % 10); // Quantidade de cada item (1 a 10)
+                    OrderItem orderItem = orderItemRepository.save(new OrderItem(product, order, quantity));
+                    orderItems.add(orderItem);
+                    log.info("Preloading Item for Order {} -> {} (Qty: {})", i, product.getName(), quantity);
+                }
 
-            log.info("Final Order with items: {}", order);
+                // Associando itens ao pedido
+                order.setItems(orderItems);
+                orderRepository.save(order);
+                log.info("Final Order {} with items: {}", i, order);
+            }
         };
     }
 }
