@@ -8,7 +8,7 @@ COPY ./mvnw ./pom.xml ./
 COPY .mvn/ .mvn/
 
 # Dá permissão de execução ao mvnw
-RUN chmod +x ./mvnw
+RUN sed -i 's/\r$//' mvnw && chmod +x ./mvnw
 
 # Resolve as dependências do projeto
 RUN ./mvnw dependency:resolve
